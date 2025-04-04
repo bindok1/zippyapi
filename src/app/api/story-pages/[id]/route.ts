@@ -7,7 +7,7 @@ const storyPageService = new StoryPageService();
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { [key: string]: string } }
+  { params }: { params: { id: string } }
 ) {
   try {
     const {id} = await params;
