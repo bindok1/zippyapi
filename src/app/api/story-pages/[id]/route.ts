@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { NextApiRequest } from 'next';
 import { StoryPageService } from '@/architecture/application/services/StoryPageService';
 
 const storyPageService = new StoryPageService();
