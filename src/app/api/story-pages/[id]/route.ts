@@ -2,18 +2,15 @@ import { NextRequest, NextResponse } from 'next/server';
 import { StoryPageService } from '@/architecture/application/services/StoryPageService';
 
 const storyPageService = new StoryPageService();
-type Props = {
-  params: { id: string };
-  searchParams: { [key: string]: string | string[] | undefined };
-}
+
 
 
 export async function GET(
   request: NextRequest,
-  props: Props
+  { params }: { params: { [key: string]: string } }
 ) {
   try {
-    const {id} = await props.params;
+    const {id} = await params;
     const storyPage = await storyPageService.getStoryPageById(id);
     
     if (!storyPage) {
