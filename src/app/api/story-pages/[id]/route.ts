@@ -1,20 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
+import type { NextApiRequest } from 'next';
 import { StoryPageService } from '@/architecture/application/services/StoryPageService';
 
 const storyPageService = new StoryPageService();
 
-export interface RouteContext {
-  params: {
-    id: string;
-  }
-}
 
 export async function GET(
   request: NextRequest,
-  context: RouteContext  
+  {params}: {params: {id: string}}
 ) {
   try {
-    const {id} = await context.params;
+    const {id} = await params;
     const storyPage = await storyPageService.getStoryPageById(id);
     
     if (!storyPage) {
