@@ -3,12 +3,18 @@ import { StoryPageService } from '@/architecture/application/services/StoryPageS
 
 const storyPageService = new StoryPageService();
 
+export interface RouteContext {
+  params: {
+    id: string;
+  }
+}
+
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: RouteContext  
 ) {
   try {
-    const id = params.id;
+    const {id} = await context.params;
     const storyPage = await storyPageService.getStoryPageById(id);
     
     if (!storyPage) {
