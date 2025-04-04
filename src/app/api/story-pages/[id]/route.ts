@@ -1,15 +1,14 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { StoryPageService } from '@/architecture/application/services/StoryPageService';
 
 const storyPageService = new StoryPageService();
 
 export async function GET(
-  request: Request,
-  context:  { params: { id: string } }
-
+  request: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
-    const {id}  = await context.params;
+    const id = params.id;
     const storyPage = await storyPageService.getStoryPageById(id);
     
     if (!storyPage) {
