@@ -7,10 +7,10 @@ const storyPageService = new StoryPageService();
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: {params: {id: string}}
 ) {
   try {
-    const {id} = await params;
+    const {id} = await context.params;
     const storyPage = await storyPageService.getStoryPageById(id);
     
     if (!storyPage) {
